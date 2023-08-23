@@ -4,9 +4,10 @@ import pandas as pd # tratamento de dados
 import os # compatibilidade com os sistemas
 
 corBg = {
-    'verde':"\033[42m",
+    'verde':"\033[38;2;5;32;200m",
     'amarelo':"\033[43m",
-    'ciano':"\033[45m",
+    'ciano':"\033[46m",
+    
     'default':"\033[0m"
 }
 
@@ -20,7 +21,11 @@ while True: # loop infinito
         times += {ps.cpu_times()} # guarda os valores
 
     df = pd.DataFrame(times) # cria uma tabela com esses dados
-    print(corBg['verde'] +f"Times\n"+ corBg['amarelo'] +f"{'='*88}\n"+ corBg['default']+f"{df}\n{'='*88}\n") # printa os dados no console
+    print(corBg['verde'] +f"\t\tTimes\n"+ #Título
+          corBg['verde'] +f"{'='*84}\n"+ #Linha
+          corBg['ciano']+f"{df}\n"+ # printa os dados no console
+          corBg['amarelo']+f"{'='*84}\n"+corBg['default']) #Linha 
+    
 
     percent += {ps.cpu_times_percent()}
     df2 = pd.DataFrame(percent)
