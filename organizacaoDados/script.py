@@ -3,9 +3,15 @@ import time as t # tipo um setInterval
 import pandas as pd # tratamento de dados
 import os # compatibilidade com os sistemas
 
+corBg = {
+    'verde':"\033[42m",
+    'amarelo':"\033[43m",
+    'ciano':"\033[45m",
+    'default':"\033[0m"
+}
 
 while True: # loop infinito
-    t.sleep(1) # aguarda 1 segundo antes de executar o loop
+    t.sleep(2) # aguarda 1 segundo antes de executar o loop
     os.system('cls' if os.name == 'nt' else 'clear') # limpa tudo que foi printado no terminal
     times = [] # array que guarda os valores dos tempos da cpu
     percent = [] # array que guarda os valores de porcentagem da cpu
@@ -14,8 +20,8 @@ while True: # loop infinito
         times += {ps.cpu_times()} # guarda os valores
 
     df = pd.DataFrame(times) # cria uma tabela com esses dados
-    print(f"Times\n{'='*88}\n{df}\n{'='*88}\n") # printa os dados no console
+    print(corBg['verde'] +f"Times\n"+ corBg['amarelo'] +f"{'='*88}\n"+ corBg['default']+f"{df}\n{'='*88}\n") # printa os dados no console
 
     percent += {ps.cpu_times_percent()}
     df2 = pd.DataFrame(percent)
-    print(f"Percent\n{'='*75}\n{df2}\n{'='*75}\n")
+    print(corBg['amarelo'] +f"Percent\n{'='*75}\n{df2}\n{'='*75}\n"+ corBg['default'])
