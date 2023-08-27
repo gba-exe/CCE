@@ -4,10 +4,9 @@ import pandas as pd # tratamento de dados
 import os # compatibilidade com os sistemas
 
 corBg = {
-    'verde':"\033[38;2;5;32;200m",
+    'verde':"\033[32m",
     'amarelo':"\033[43m",
     'ciano':"\033[46m",
-    
     'default':"\033[0m"
 }
 
